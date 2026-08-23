@@ -48,6 +48,6 @@ public String getTotalWordCount() {
     for (String count : wordCounts) {
         total += count;
     }
-    return "Total words: " + total;
+    return "Total word counts: " + total;
 }
 }
