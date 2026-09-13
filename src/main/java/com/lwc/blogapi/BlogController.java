@@ -14,16 +14,26 @@ public class BlogController {
     private PostService postService;
 
     @PostMapping
+    public ResponseEntity<Post> createPost(@RequestBody Post post) {
+        return ResponseEntity.ok((Post) postService.createPost(post));
+    }
+
+    @GetMapping
+    public List<Post> getAllPosts() {
+        return postService.getAllPosts();
+    }
+
+    @PostMapping
     public ResponseEntity<Post> createPost(@RequestParam String title, @RequestParam String content) {
         Post post = postService.createPost(title, content);
         return ResponseEntity.status(HttpStatus.CREATED).body(post);
     }
 
-    @GetMapping
-    public ResponseEntity<List<Post>> getAllPosts() {
-        List<Post> posts = postService.getAllPosts();
-        return ResponseEntity.ok(posts);
-    }
+//    @GetMapping
+//    public ResponseEntity<List<Post>> getAllPosts() {
+//        List<Post> posts = postService.getAllPosts();
+//        return ResponseEntity.ok(posts);
+//    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Post> getPost(@PathVariable String id) {

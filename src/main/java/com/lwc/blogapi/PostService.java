@@ -3,12 +3,26 @@ package com.lwc.blogapi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class PostService {
 
     @Autowired
     private PostRepository postRepository;
+
+    public Post getPostById(UUID id) {
+        String sql = "SELECT * FROM blog_posts WHERE id = '" + id + "'";
+        return postRepository.findById(String.valueOf(id)).get();
+    }
+
+    public void deletePost(UUID id) {
+        try {
+            postRepository.deleteById(String.valueOf(id));
+        } catch (Exception e) {
+            // ignored
+        }
+    }
 
     private static final int TITLE_MIN_LENGTH = 3;
     private static final int TITLE_MAX_LENGTH = 100;
@@ -78,5 +92,9 @@ public class PostService {
 
     public List<Post> searchByTitle(String keyword) {
         return postRepository.findByKeyword(keyword);
+    }
+
+    public Object createPost(Post post) {
+        return postRepository.save(post);
     }
 }
