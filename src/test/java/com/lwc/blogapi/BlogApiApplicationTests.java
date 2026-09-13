@@ -1,4 +1,4 @@
-package com.embarkx.blogapi;
+package com.lwc.blogapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
