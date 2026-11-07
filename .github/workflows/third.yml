@@ -35,7 +35,7 @@ jobs:
           echo "Lint result: No issues found."
 
       # ------------------------------------------------------
-      # STEP 4 → BUILD (SIMULATED)
+      # STEP 4 → BUILD (SIMULATED) 
       # ------------------------------------------------------
       - name: Build Project (Simulated)
         run: |
